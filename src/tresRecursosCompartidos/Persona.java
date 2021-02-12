@@ -1,4 +1,4 @@
-package cocurrentes.tresrecursosCompartidos;
+package tresRecursosCompartidos;
 
 import java.util.ArrayList;
 
@@ -38,6 +38,7 @@ public class Persona implements Runnable{
 		}
 		
 		System.out.println("finaliza cliente:"+id+"\t:"+resultado);
+		
 		
 	}
 	

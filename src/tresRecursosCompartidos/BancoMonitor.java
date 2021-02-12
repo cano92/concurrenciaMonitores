@@ -1,4 +1,4 @@
-package cocurrentes.tresrecursosCompartidos;
+package tresRecursosCompartidos;
 
 import java.util.LinkedList;
 

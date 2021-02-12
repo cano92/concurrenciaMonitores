@@ -1,4 +1,4 @@
-package cocurrentes.tresrecursosCompartidos;
+package tresRecursosCompartidos;
 
 import java.util.ArrayList;
 
@@ -38,6 +38,7 @@ public class Empleado implements Runnable {
 			System.out.println("empleado:"+id+"\tprocesa datos:"+auxString);
 			
 			try {
+				//Thread.sleep( 2000 );
 				auxEscritorio.enviarResultados("resultado enviado por Empleado"+id);
 			} catch (InterruptedException e) {
 				e.printStackTrace();

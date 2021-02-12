@@ -2,8 +2,6 @@ package passingConditionImpl;
 
 import java.util.ArrayList;
 
-import cocurrentes.tresrecursosCompartidos.BancoMonitor;
-import cocurrentes.tresrecursosCompartidos.EscritorioMonitor;
 import passingCondition.CajeroMonitor;
 
 public class Persona implements Runnable{
