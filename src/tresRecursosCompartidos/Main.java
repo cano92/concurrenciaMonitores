@@ -28,7 +28,7 @@ public class Main {
 		
 		//se crea pool con la cantidad de hilos de nuestro procesador
 		Runtime runtime = Runtime.getRuntime();
-		ExecutorService pool = Executors.newFixedThreadPool( 8 );
+		ExecutorService pool = Executors.newFixedThreadPool( 4 );
 		//ExecutorService pool = Executors.newFixedThreadPool( runtime.availableProcessors() );
 		
 		for(int i = 0; i < cantEmpleados ;i++) {
