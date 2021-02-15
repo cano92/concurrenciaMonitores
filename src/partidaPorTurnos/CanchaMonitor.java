@@ -5,44 +5,66 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class CanchaMonitor {
-	
-	int cantJugadoresNecesarios;
-	int cantJugadoresActivos=0;
+
+	boolean juegoFinalizado=false;
+	boolean jugadaLista=false;
+	int jugadaActual;
 	
 	final Lock lock = new ReentrantLock(); 
-	final Condition turnoJugadores = lock.newCondition();
-	final Condition esperandoJugadores = lock.newCondition();
 	
-	//constructor
-	public CanchaMonitor( int cantJugadoresEsper ) {
-		cantJugadoresNecesarios=cantJugadoresEsper;
-	}
+	final Condition vcJuego = lock.newCondition();
+	final Condition vcJugador = lock.newCondition();
 	
-	public void esperandoJugadores() throws InterruptedException {
+	
+	public void enviarJugada( int aJugada) throws InterruptedException {
 		lock.lock();
 		try {
-			if( cantJugadoresActivos == cantJugadoresNecesarios ) {
-				esperandoJugadores.signalAll();
-			}else {
-				esperandoJugadores.await();
-			}
+			jugadaActual=aJugada;
+			vcJuego.signal();
+			jugadaLista=true;
+			vcJugador.await();
+			//espera a que el juego guarde la jugada
+			//y actualize el estado de juego		
 		}finally {
 			lock.unlock();
 		}
 	}
 	
-	public void proximoTurno() throws InterruptedException {
+	public int recibirJugada() throws InterruptedException {
 		lock.lock();
 		try {
-			//despierto al siguiente jugador en turno
-			turnoJugadores.signal(); 
-			
-			//y me quedo dormido esperando mi siguiente turno
-			turnoJugadores.await();
+			if(!jugadaLista) {
+				vcJuego.await();
+			}//cambia eñ estado para que otro jugador agregue nuevo movimiento
+			jugadaLista=false;
+		}finally {
+			lock.unlock();
+		}
+		System.out.println("saca jugada:"+jugadaActual);
+		return jugadaActual;
+	}
+	
+	public void continuar() {
+		lock.lock();
+		try { //deja continuar al jugador sin finalizar el juego
+			vcJugador.signal();	
 		}finally {
 			lock.unlock();
 		}
 	}
 	
+	public void finalizar() {
+		lock.lock();
+		try {
+			juegoFinalizado=true;
+			vcJugador.signal();
+		}finally {
+			lock.unlock();
+		}
+	}
 	
+	//***** tener cuidado con la falta de  exclucion mutua de la funcion--sincronizacion
+	public boolean isJuegoFinalizado() {
+		return juegoFinalizado;
+	}
 }
