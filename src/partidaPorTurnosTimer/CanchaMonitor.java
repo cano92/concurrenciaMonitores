@@ -1,4 +1,4 @@
-package partidaPorTurnos;
+package partidaPorTurnosTimer;
 
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -14,12 +14,13 @@ public class CanchaMonitor {
 	
 	final Condition vcJuego = lock.newCondition();
 	final Condition vcJugador = lock.newCondition();
+	final Condition vcEsperandoJugada = lock.newCondition();
+	final Condition vcInput = lock.newCondition();
 	
-	
-	public void enviarJugada( int aJugada) throws InterruptedException {
+	public void enviarJugada( ) throws InterruptedException {
 		lock.lock();
 		try {
-			jugadaActual=aJugada;
+			//la jugada ya fue agregada por el input
 			vcJuego.signal();
 			jugadaLista=true;
 			vcJugador.await();
@@ -58,6 +59,38 @@ public class CanchaMonitor {
 		try {
 			juegoFinalizado=true;
 			vcJugador.signalAll();
+		}finally {
+			lock.unlock();
+		}
+	}
+	
+	public void esperandoJugada() throws InterruptedException {
+		lock.lock();
+		try {//libera el input para ingresar jugada
+			vcInput.signal();
+			
+			vcEsperandoJugada.await();
+		}finally {
+			lock.unlock();
+		}
+	}
+
+	public void esperaInput() throws InterruptedException {
+		lock.lock();
+		try {//esperandoTurno
+			vcInput.await();
+		}finally {
+			lock.unlock();
+		}
+	}
+	
+	public void agregarJugada(int aJugada) {
+		lock.lock();
+		try {
+			jugadaActual=aJugada;
+			
+			//levantar barrera jugador
+			vcEsperandoJugada.signal();
 		}finally {
 			lock.unlock();
 		}

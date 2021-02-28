@@ -1,4 +1,4 @@
-package partidaPorTurnos;
+package partidaPorTurnosTimer;
 
 import java.util.Scanner;
 
@@ -29,11 +29,14 @@ public class Jugador implements Runnable{
 		
 		while(!juegoFinalizado) {
 			//activo el timer() de mi turno
+			turnosMonitor.inicarTimer();
 			
-			jugadaActual=realizarMovimiento();
-			
-			try {
-				canchaMonitor.enviarJugada(jugadaActual); //****
+			System.out.println("turno del jugador id: "+id);
+			try { //espero en una barrera que lo puede levantar el timer o una jugada
+				canchaMonitor.esperandoJugada();
+				
+				// guarda el movimiento realizado o pierde el turno
+				canchaMonitor.enviarJugada(); //****
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
@@ -51,7 +54,6 @@ public class Jugador implements Runnable{
 	}
 
 	public int realizarMovimiento() {
-		System.out.println("turno del jugador id: "+id);
 		System.out.println("ingrese un nro entre 0 .. 9 ");
 		Scanner scanner = new Scanner(System.in);  // Create a Scanner object
 	

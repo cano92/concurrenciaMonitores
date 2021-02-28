@@ -18,7 +18,7 @@ public class TiempoPartido implements Runnable {
 		try {
 			canchaMonitor.iniciarTiempo();
 			
-			Thread.sleep( 100 ); //10seg
+			Thread.sleep( 1000 ); //10seg
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

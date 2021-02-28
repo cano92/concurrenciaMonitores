@@ -31,8 +31,9 @@ public class Main {
 			pool.execute(runnable2);
 		}
 		
-		System.out.println("finalizo main");
 		
+		pool.shutdown();   //elimina los hilos despues de que terminen
+		System.out.println("finalizo main");
 	}
 
 }

@@ -44,7 +44,7 @@ public class Main {
 			pool.execute(runnable);
 		}
 		
-
+		pool.shutdown();   //elimina los hilos despues de que terminen
 		
 	}
 }

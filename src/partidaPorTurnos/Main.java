@@ -1,12 +1,16 @@
 package partidaPorTurnos;
 
-import java.util.Scanner;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import tresRecursosCompartidos.Empleado;
-
 /**
+ * plantilla base Concurrentes Monitores
+ * donde N procesos jugadores juegan a adivinar el nro
+	 * y el procesos NombreJuego marca las reglas del juego
+	 * -cordinados por 2 monitores ( turnoMonitor, canchaMonitor )
+	 * gana quien adivina el nro. en el ejemplo 7
+	 * 
  * tecnica passing the condition  -Monitor turnos
  * 	para determinar turnos entre procesos jugadores
  * 	barrera -para esperar a los jugadores
@@ -22,7 +26,7 @@ import tresRecursosCompartidos.Empleado;
 public class Main {
 
 	public static void main(String[] args) {
-		int cantJugadores=2;
+		int cantJugadores=3;
 		
 		TurnosMonitor turnosMonitor = new TurnosMonitor(cantJugadores);
 		CanchaMonitor canchaMonitor = new CanchaMonitor();
@@ -36,8 +40,7 @@ public class Main {
 		}
 		
 		Runnable runnable2 = new NombreJuego(turnosMonitor, canchaMonitor);
-		System.out.println("se creo el juego");
-		pool.execute(runnable2);
+		pool.execute(runnable2); 
 		
 		pool.shutdown();   //elimina los hilos despues de que terminen
 		//while(!pool.isTerminated() ); //barrera que espera que todos los hilos terminaron
