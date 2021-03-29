@@ -1,4 +1,4 @@
-package tresRecursosCompartidos;
+package nRecursosCompartidos;
 	/*
 	 * ejemplo 3 empleados recibiendo n -(100) clientes en un banco
 	 * los clientes llegan y forma en una fila hasta que algun empleado se libera
@@ -28,7 +28,7 @@ public class Main {
 		
 		//se crea pool con la cantidad de hilos de nuestro procesador
 		Runtime runtime = Runtime.getRuntime();
-		ExecutorService pool = Executors.newFixedThreadPool( 4 );
+		ExecutorService pool = Executors.newFixedThreadPool( 6 );
 		//ExecutorService pool = Executors.newFixedThreadPool( runtime.availableProcessors() );
 		
 		for(int i = 0; i < cantEmpleados ;i++) {

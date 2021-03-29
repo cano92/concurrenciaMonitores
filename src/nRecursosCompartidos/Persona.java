@@ -1,4 +1,4 @@
-package tresRecursosCompartidos;
+	package nRecursosCompartidos;
 
 import java.util.ArrayList;
 

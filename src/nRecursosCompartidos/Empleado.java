@@ -1,10 +1,10 @@
-package tresRecursosCompartidos;
+package nRecursosCompartidos;
 
 import java.util.ArrayList;
 
 public class Empleado implements Runnable {
 	int id;
-	String auxString;
+	String datosUsuario;
 	
 	BancoMonitor bancoMonitor;
 	ArrayList<EscritorioMonitor> escritoriosMonitor;
@@ -27,7 +27,7 @@ public class Empleado implements Runnable {
 		
 			auxEscritorio = escritoriosMonitor.get(id);
 			try { //recupera datos del cliente
-				auxString= auxEscritorio.esperarDatos();
+				datosUsuario = auxEscritorio.esperarDatos();
 				
 			} catch (InterruptedException e) {
 
@@ -35,7 +35,7 @@ public class Empleado implements Runnable {
 			}
 			
 			//realiza algo con los datos del cliente
-			System.out.println("empleado:"+id+"\tprocesa datos:"+auxString);
+			System.out.println("empleado:"+id+"\tprocesa datos:"+datosUsuario);
 			
 			try {
 				//Thread.sleep( 2000 );
