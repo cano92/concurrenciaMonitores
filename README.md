@@ -13,10 +13,10 @@ cada empleado solo puede atender un cliente a la vez.
 
 los clientes son atendidos segun el **Orden de llegada** al Banco, sincronizados por BancoMonitor y EscritorioMonitor
 
-en el ejemplo para ser mas descriptivo son 10 clientes procesos persona y 3 procesos empleados ejecutados sobre un pool de treadhs de 6
+en la implementacion para ser mas descriptivo son 10 clientes procesos persona y 3 procesos empleados ejecutados sobre un pool de treadhs de 6
 
 ##### Diagrama UML
 
 ![Screenshot](resources/nRecursosCompartidos/nRecursosCompartidos.png)
 
-### \#1 PartidaPorTurnos
+### \#2 PartidaPorTurnos
