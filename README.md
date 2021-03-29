@@ -20,6 +20,7 @@ en la implementacion para ser mas descriptivo son 10 clientes procesos persona y
 ![Screenshot](resources/nRecursosCompartidos/nRecursosCompartidos.png)
 
 **BancoMonitor** se encarga de recibir clientes y mantenerlos en la fila( **orden de llegada** ) hasta que algun Empleado este libre y pueda atenderlo
+
 **EscritorioMonitor** se encarga de sincronizar la interacción del cliente y empleado asignado por el banco para ser atendiddo. hasta concluir la atención y el empleado pueda atender otro
 
 ### \#2 PartidaPorTurnos
