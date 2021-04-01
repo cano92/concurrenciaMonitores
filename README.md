@@ -68,7 +68,7 @@ es encargado de la sincronizacion y comunicacion del Jugador con el juego, ejemp
 
 en la implementacion de ejemplo se encuentra un juego de 3 jugadores que deben adivinar un nro elegido por turnos
 
-### \#2 tiempoSincronizado
+### \#4 tiempoSincronizado
 
 es un ejemplo donde **N procesos Concurrente** comparten un mismo tiempo para realizar sus acciones..y una vez concluido el tiempo todos los Procesos concurrentes se demoran.. el tiempo debe ser exactemente igual para cada proceso Concurrente y una vez concluido el tiempo ningun proceso debe poder realizar ninguna accion
 
