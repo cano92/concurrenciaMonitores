@@ -23,7 +23,7 @@ las distintas implementaciones del monitor **cambian las reglas de acceso** al r
 es la implementacion mas sencilla de un monitor. todos los **procesos concurrentes Persona** acceden al recurso compartido.. segun el **orden de llegada** al mismo, el monitor permite el paso inmediatamente si ningun proceso esta ocupando el recurso compartido (cajero). si el recurso se encuentra ocupado el monitor demora al proceso en una fila de espera, para que cuando el recurso sea liberado inmediatamente pueda ser accedido por el siguiente proceso Persona de la fila
 
 #### CajeroMonitorPrioridad
-al igual que el monitor simple el acceso al recurso compartido es en **orden de llegada** con la diferencia que, si llega una persona **mayor a 60 años de edad** es tomado como prioridad y este es el proximo en acceder al recurso
+al igual que el monitor simple el acceso al recurso compartido es en **orden de llegada** con la diferencia que, si llega una persona **mayor a 60 años de edad** es tomado como prioridad y este es el proximo en acceder al recurso sin importar la cantidad de Personas de la fila de espera
 
 #### CajeroMonitorEdad
 esta implementacion permite acceder al recurso compartido al **proceso concurrente persona** de mayor edad que se encuentre en la fila de espera, y en busca de mantener el mejor rendimiento posible se usa una estructura de Arbol Ordenado **TreeSet** que garantiza **el tiempo de Log(n)** para las operaciones 
