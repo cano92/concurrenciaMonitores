@@ -35,26 +35,25 @@ public class CajeroMonitorSimple implements CajeroMonitor{
 	}
 
 	
-	public synchronized void pasar(int id) throws InterruptedException {
+	public synchronized void pasar(Persona per) throws InterruptedException {
 		if (!cajeroLibre) {
-			System.out.println("el proceso id:"+ id+ "\t se encola en la fila");
+			System.out.println(per.getNombre()+" id:"+ per.getId()+ "\t se encola en la fila");
 			esperando++;
 			wait();
 			
-		} else {
+		} else {//pasa a usar el cajero
 			cajeroLibre = false;
-			System.out.println("usuario id: "+ id + "\t pasa a usar el cajero sin hacer fila " );
 		}
 	}
 	
-	public synchronized void salir(int id) {
+	public synchronized void salir(Persona per) {
 		if (esperando > 0) {
 			esperando--;
 			notify(); // despierta al primero de la cola de dormidos con wait
 		} else {
 			cajeroLibre = true;
 		}
-		System.out.println("usuario id: "+id  +"\tsale del cajero" );
+		System.out.println(per.getNombre()+" id: "+per.getId()+"\t sale del cajero" );
 	}
 	
 }

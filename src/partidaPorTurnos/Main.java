@@ -31,7 +31,7 @@ public class Main {
 		TurnosMonitor turnosMonitor = new TurnosMonitor(cantJugadores);
 		CanchaMonitor canchaMonitor = new CanchaMonitor();
 			
-		ExecutorService pool = Executors.newFixedThreadPool( 5 );
+		ExecutorService pool = Executors.newFixedThreadPool( 6 );
 		
 		for(int i=0; i < cantJugadores ;i++) {
 			Runnable runnable = new Jugador(i,canchaMonitor,turnosMonitor);

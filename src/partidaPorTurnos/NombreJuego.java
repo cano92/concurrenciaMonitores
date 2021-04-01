@@ -38,12 +38,13 @@ public class NombreJuego implements Runnable{
 				canchaMonitor.finalizar();
 			}else {
 				canchaMonitor.continuar();
+				System.out.println("nro incorrecto.. siguiente turno\n\r");
 			}
 	
 		}
 		//podria tener datos de los juagdores un historial de juegos etc
 		//informa que hay aganador y que finalizen los procesos Jugadores
-		System.out.println("juego finalizado");
+		System.out.println("GANADOR.. finalizado el juego");
 	}
 	
 	

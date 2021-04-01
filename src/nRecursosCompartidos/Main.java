@@ -1,6 +1,6 @@
 package nRecursosCompartidos;
 	/*
-	 * ejemplo 3 empleados recibiendo n -(100) clientes en un banco
+	 * ejemplo 3 empleados recibiendo n -(10) clientes en un banco
 	 * los clientes llegan y forma en una fila hasta que algun empleado se libera
 	 * cuando un empleado se libera solicita que pase el siguiente a ser atendido
 	 * los clientes reciben el nro del escritorio (caja a la que deben acudir 

@@ -11,9 +11,9 @@ public class Jugador implements Runnable{
 	TurnosMonitor turnosMonitor;
 	
 	public Jugador(int aId, CanchaMonitor canchaMon,TurnosMonitor turnosMon ) {
-		id=aId;
-		canchaMonitor = canchaMon;
-		turnosMonitor = turnosMon;
+		this.id=aId;
+		this.canchaMonitor = canchaMon;
+		this.turnosMonitor = turnosMon;
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public class Jugador implements Runnable{
 		while(!juegoFinalizado) {
 			//activo el timer() de mi turno
 			
-			jugadaActual=realizarMovimiento();
+			jugadaActual=this.realizarMovimiento();
 			
 			try {
 				canchaMonitor.enviarJugada(jugadaActual); //****

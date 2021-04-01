@@ -10,14 +10,10 @@ public class CajeroExtra implements CajeroMonitor{
 	private static CajeroExtra instance = null;
 
 	//se pueden generar multiples lock para exclusion mutua y mejorar la concurrencia
-	//aunque esto romperia la idea de monitor de que cada methods se ejecuta con exclusion mutua
 	final Lock lock = new ReentrantLock(); 
-	//se pueden generar multiples -colas Condition para dormir procesos segun sea necesario y no solo uno
+	
+	//se pueden generar multiples  Condition para dormir procesos, y generar distintos prioridades o ordenes
 	final Condition filaParaUsarCajero = lock.newCondition(); 
-
-	//se pude crear colleciones estaticas y dinamicas para generar diferentes ordenes o prioridades para 
-	//dormir o despertar procesos segun prioridad o necesidad   ejemplo
-	//Condition[] arrayConditions = new Condition[10];
 	
 	private boolean cajeroLibre = true;
 	private int esperando = 0;
@@ -31,12 +27,12 @@ public class CajeroExtra implements CajeroMonitor{
 		return instance;
 	}
 
-	public void pasar(int id) throws InterruptedException {
+	public void pasar(Persona per) throws InterruptedException {
 		lock.lock();
 		try {
 			if(!cajeroLibre) {
 				esperando++;
-				System.out.println("el proceso id: "+id+ "\t se duerme");
+				System.out.println(per.getNombre()+" id:"+ per.getId()+ "\t se encola en la fila");
 				filaParaUsarCajero.await();				
 			}else {
 				cajeroLibre=false;
@@ -46,7 +42,7 @@ public class CajeroExtra implements CajeroMonitor{
 		}
 	}
 	
-	public void salir(int id) {
+	public void salir(Persona per) {
 		lock.lock();
 		try {
 			if(esperando > 0) {
@@ -55,7 +51,7 @@ public class CajeroExtra implements CajeroMonitor{
 			}else {
 				cajeroLibre=true;
 			}
-			System.out.println("usuario id: "+id  +"\tsale del cajero" );
+			System.out.println(per.getNombre()+" id: "+per.getId()+"\t sale del cajero" );
 		} finally {
 			lock.unlock();
 		}
