@@ -76,3 +76,5 @@ el ejemplo simula un partido de futbol donde 22 procesos Jugador inician una par
 la partida no puede iniciar si no se encuentran los 22 procesos juagador listos para empezar.y una vez finalizada la partida ningun proceso jugador puede realizar ningun movimiento
 
 ##### Diagrama UML
+
+![Screenshot](resources/tiempoSincronizado/tiempoSincronizado.png)
