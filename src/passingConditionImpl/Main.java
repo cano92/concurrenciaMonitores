@@ -75,11 +75,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Main pruebaHilos = new Main();
-	
-		//CajeroMonitor cajeroMonitor = CajeroExtra.getInstance();
+
 		//CajeroMonitor cajeroMonitor = CajeroMonitorSimple.getInstance();
-		CajeroMonitor cajeroMonitor = CajeroMonitorPrioridad.getInstance(10);
-		
+		//CajeroMonitor cajeroMonitor = CajeroMonitorPrioridad.getInstance(10);
+		CajeroMonitor cajeroMonitor = CajeroMonitorEdad.getInstance(10);
 		
 		pruebaHilos.conPoolDeConexion(cajeroMonitor);
 		
